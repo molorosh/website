@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+	<style>
+		body {
+			margin: 0px;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body id="theBody">
+
+<h1>My first SVG</h1>
+
+<svg id="svg001" width="300" height="100">
+  <circle id="svgParent01" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"></circle>
+  <circle id="svgCircle01" cx="50" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+  
+  <circle id="svgParent02" cx="150" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"></circle>
+  <circle id="svgCircle02" cx="150" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+</svg>
+
+<svg id="svg002" width="300" height="100">
+  <circle id="svgParent03" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="cyan"></circle>
+  <circle id="svgCircle03" cx="50" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+  
+  <circle id="svgParent04" cx="150" cy="50" r="40" stroke="green" stroke-width="4" fill="cyan"></circle>
+  <circle id="svgCircle04" cx="150" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+</svg>
+
+<svg id="svg003" width="300" height="100">
+  <ellipse id="svgParent05" cx="50" cy="50" rx="40" ry="30" stroke="green" stroke-width="4" fill="cyan"></ellipse>
+  <circle id="svgCircle05" cx="50" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+  
+  <ellipse id="svgParent06" cx="150" cy="50" rx="40" ry="30" stroke="green" stroke-width="4" fill="cyan"></ellipse>
+  <circle id="svgCircle06" cx="150" cy="50" r="8" stroke="green" stroke-width="4" fill="darkgreen"></circle>
+</svg>
+
+<svg id="svg004" width="300" height="400">
+  <ellipse id="face" cx="150" cy="200" rx="130" ry="190" stroke="black" stroke-width="4" fill="BlanchedAlmond "></ellipse>
+  
+  <ellipse id="svgParent07" cx="50" cy="200" rx="40" ry="30" stroke="black" stroke-width="4" fill="white"></ellipse>
+  <circle id="svgCircle07" cx="50" cy="200" r="8" stroke="CornflowerBlue " stroke-width="8" fill="black"></circle>
+  
+  <ellipse id="svgParent08" cx="150" cy="200" rx="40" ry="30" stroke="black" stroke-width="4" fill="white"></ellipse>
+  <circle id="svgCircle08" cx="150" cy="200" r="8" stroke="CornflowerBlue " stroke-width="8" fill="black"></circle>
+  
+  <ellipse id="mouth" cx="100" cy="300" rx="40" ry="10" stroke="black" stroke-width="4" fill="Chocolate"></ellipse>
+
+  <ellipse id="nostril01" cx="85" cy="270" rx="6" ry="2" stroke="black" stroke-width="1" fill="black"></ellipse>
+  <ellipse id="nostril02" cx="105" cy="270" rx="6" ry="2" stroke="black" stroke-width="1" fill="black"></ellipse>
+  
+</svg>
+
+
+<script>
+
+function redrawCircle(pageX, pageY, frameElement, radius, svgElement, xPos, yPos){
+
+	var frame = $("#" + frameElement);
+	var elem = $("#" + svgElement);
+	let mouseX = Math.round(pageX - frame.position().left);
+	let mouseY = Math.round(pageY - frame.position().top);
+	
+	let cx = elem.attr('cx');
+	let cy = elem.attr('cy');
+	
+	var newMouseX = mouseX;
+	var newMouseY = mouseY;
+	
+	let diffX = xPos - mouseX;
+	let diffY = yPos - mouseY;
+	let diffRadius = Math.sqrt((diffX * diffX) + (diffY * diffY))
+	
+	if(diffRadius < radius){
+		newMouseX = mouseX;
+		newMouseY = mouseY;
+	}else{
+		newMouseX = xPos - (diffX * (radius / diffRadius));
+		newMouseY = yPos - (diffY * (radius / diffRadius));
+	}
+	
+	elem.attr('cx', newMouseX).attr('cy', newMouseY);
+};
+
+function redrawEllipse(pageX, pageY, frameElement, radiusH, radiusV, svgElement, xPos, yPos){
+
+	var frame = $("#" + frameElement);
+	var elem = $("#" + svgElement);
+	let mouseX = Math.round(pageX - frame.position().left);
+	let mouseY = Math.round(pageY - frame.position().top);
+	
+	let cx = elem.attr('cx');
+	let cy = elem.attr('cy');
+	
+	var newMouseX = mouseX;
+	var newMouseY = mouseY;
+	
+	let diffX = xPos - mouseX;
+	let diffY = yPos - mouseY;
+	let diffRadius = Math.sqrt((diffX * diffX) + (diffY * diffY))
+	
+	let ellipseBoundaryTest = 
+		((Math.pow((mouseX - xPos), 2)) / Math.pow((2 * radiusH),2))
+		+ ((Math.pow((mouseY - yPos), 2)) / Math.pow((2 * radiusV),2))
+	
+	var angleInRadians = Math.atan2(diffY, diffX);
+	if(ellipseBoundaryTest <= 1){
+		newMouseX = mouseX;
+		newMouseY = mouseY;
+	}else{
+		newMouseX = xPos + (2 * radiusH * Math.cos(Math.PI + angleInRadians));
+		newMouseY = yPos + (2 * radiusV * Math.sin(Math.PI + angleInRadians));
+	}
+	
+	elem.attr('cx', newMouseX).attr('cy', newMouseY);
+};
+
+$(document).ready(function() {
+    $("#theBody").mousemove(
+		function(e){
+			// e:: e.pageX, e.pageY, e.clientX, e.clientY
+			redrawCircle(e.pageX, e.pageY, "svg001", 15, "svgCircle01", 50, 50);
+			redrawCircle(e.pageX, e.pageY, "svg001", 15, "svgCircle02", 150, 50);
+			
+			redrawEllipse(e.pageX, e.pageY, "svg002", 10, 5, "svgCircle03", 50, 50);
+			redrawEllipse(e.pageX, e.pageY, "svg002", 10, 5, "svgCircle04", 150, 50);
+			
+			redrawEllipse(e.pageX, e.pageY, "svg003", 10, 5, "svgCircle05", 50, 50);
+			redrawEllipse(e.pageX, e.pageY, "svg003", 10, 5, "svgCircle06", 150, 50);
+			
+			redrawEllipse(e.pageX, e.pageY, "svg004", 10, 5, "svgCircle07", 50, 200);
+			redrawEllipse(e.pageX, e.pageY, "svg004", 10, 5, "svgCircle08", 150, 200);
+		}
+	)
+});
+
+</script>
+</body>
+</html>
