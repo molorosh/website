@@ -2,16 +2,10 @@ import React, { Component } from 'react';
 
 class MouseEventSink extends Component {
 
-    constructor(props){
-        console.log("MouseEventSink::constructor()");
-        super(props);
-    }
-
     componentDidMount() {
-        console.log("MouseEventSink::componentDidMount()");
-        window.MouseEventCallbacks = [];
+        window.MouseMoveEventNames = [];
+        window.MouseMoveEventCallbacks = {};
         window.onmousemove = (e) => {
-            //console.log("(" + e.clientX + ", " + e.clientY + ")")
             var elem_xcoord = document.getElementById("mse_xcoord");
             var elem_ycoord = document.getElementById("mse_ycoord");
             if(elem_xcoord){
@@ -20,12 +14,27 @@ class MouseEventSink extends Component {
             if(elem_ycoord){
                 elem_ycoord.innerHTML = e.clientY;
             }
+            // pass the mouse co-ordinates to the callbacks
+            if(window.MouseMoveEventNames 
+                && window.MouseMoveEventNames.length){
+                for(
+                    var x = 0, xMax = window.MouseMoveEventNames.length;
+                    x < xMax;
+                    x++)
+                {
+                    var mover = window.MouseMoveEventNames[x];
+                    window.MouseMoveEventCallbacks[mover](
+                        e.clientX,
+                        e.clientY
+                    )
+                }
+            }
         };
     }
 
     componentWillUnmount() {
-        console.log("MouseEventSink::componentWillUnmount()");
-        window.MouseEventCallbacks = undefined;
+        window.MouseMoveEventNames = undefined;
+        window.MouseMoveEventCallbacks = undefined;
     }
 
     render(){
