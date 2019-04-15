@@ -32,9 +32,6 @@ class App extends Component {
           <TheEyesHaveIt
             identifier="avatar01"
             />
-          <TheEyesHaveIt
-            identifier="avatar02"
-            />
         </section>
       </div>
     );
