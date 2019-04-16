@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import './TheEyesHaveIt.css';
 //import avatar from './avatar.svg'
 import AvatarSvg from './AvatarSvg'
@@ -11,23 +12,29 @@ class TheEyesHaveIt extends Component {
         this.redrawEllipse = this.redrawEllipse.bind(this);
     }
 
-    getPosition(el) {
-        // recurse through all parents, cumulating x & y:
-        for (
-            var lx=0, ly=0;
-             el != null;
-             lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent){
-                 console.log({lx: lx, ly: ly});
-             };
-        return {x: lx,y: ly};
+    getPosition(elementId) {
+        let retVal = { x: undefined, y: undefined };
+        // just hard-code it for now:
+        retVal.x = 527;
+        retVal.y = 446;
+        var realDomElement = ReactDOM.findDOMNode(this);
+        if(realDomElement){
+            let descendant = realDomElement.querySelector('#' + elementId);
+            if(descendant){
+                let bounds = descendant.getBoundingClientRect();
+                // just hard-code it for now:
+                retVal.x = bounds.left;
+                retVal.y = bounds.top;
+            }
+        }
+        console.log(retVal);
+        return retVal;
     }
 
     redrawEllipse(pageX, pageY, frameElement, radiusH, radiusV, svgElement, xPos, yPos){
-        console.log({pageX: pageX, pageY: pageY});
-        let frame = document.getElementById(frameElement);
         let elem = document.getElementById(svgElement);
-        let position = this.getPosition(frame);
-        console.log(position);
+        let position = this.getPosition(frameElement);
+
         let mouseX = Math.round(pageX - position.x);
         let mouseY = Math.round(pageY - position.y);
         
@@ -97,16 +104,21 @@ class TheEyesHaveIt extends Component {
       let div_id = "tehi_" + this.props.identifier;
       let x_id = "tehi_" + this.props.identifier + "_xcoord";
       let y_id = "tehi_" + this.props.identifier + "_ycoord";
-      return (
-          <div className="tehiMain" id={div_id}>
-            <script type="text/javascript">
-                
-            </script>
+      let debugLayout = "";
+      if(this.props.debug){
+          debugLayout = (
+            <div>
               <pre>(TEHI: placeholder [{this.props.identifier}])</pre>
               <p>
                 mouse:(x: <span id={x_id}>???</span>, 
                 y: <span id={y_id}>???</span>)</p>
-              <p><AvatarSvg /></p>
+            </div>
+          );
+      }
+      return (
+          <div className="tehiMain" id={div_id}>
+            {debugLayout}
+            <p><AvatarSvg /></p>
           </div>
       );
   }
