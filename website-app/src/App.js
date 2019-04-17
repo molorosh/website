@@ -19,36 +19,35 @@ class App extends Component {
           </div>
         </header>
         <article>
-          <div className="grid3x3">
+          <div className="mainLayout">
             
             <div>
               <MouseEventSink debug={false} />
             </div>
 
-            <div>          
+            <div className="welcome">          
               <h1>Welcome</h1>
               <p>
-                This is the μ site for my tech, art, and music and general creative stuff.
-                At present my creative stuff is scattered across:
+                This is the μ site for my tech, art, music 
+                <br/>and general creative stuff.  
+                <br/>At present my creative stuff is scattered across:
               </p>
             </div>
 
-            <div></div>
-            
-            <div className="divRightAlign"> 
-              <h2>Code Repositories:</h2>
-              <p><a target="_blank" href="https://github.com/ricketts30">github.com/ricketts30</a></p>
-              <p><a target="_blank" href="https://github.com/molorosh">github.com/molorosh</a></p>
-            </div>
-
-            <div>
+            <div className="creepyAvatar">
               <TheEyesHaveIt 
                 debug={false}
                 identifier="avatar01"
                 />
             </div>
+            
+            <div className="codeRepositories"> 
+              <h2>Code Repositories:</h2>
+              <p><a target="_blank" href="https://github.com/ricketts30">github.com/ricketts30</a></p>
+              <p><a target="_blank" href="https://github.com/molorosh">github.com/molorosh</a></p>
+            </div>
 
-            <div className="divLeftAlign">
+            <div className="microBlogs">
               <h2>μ Blogs:</h2>
               <p><a target="_blank" href="https://molorosh.tumblr.com">molorosh.tumblr.com</a></p>
             </div>

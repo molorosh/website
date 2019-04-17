@@ -49,20 +49,26 @@
   color: #61dafb;
 }
 
-.grid3x3 {
-  display: grid;
-  grid-template-columns: 30vw 30vw 30vw;
+div.welcome {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
 }
 
-.grid3x3 ul {
-  list-style-type:none
+div.codeRepositories {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
 }
 
-.divLeftAlign{
-  text-align: left;
+div.creepyAvatar {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
 }
 
-.divRightAlign{
-  text-align: right;
+div.microBlogs {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
 }
-
