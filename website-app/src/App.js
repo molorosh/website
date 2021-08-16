@@ -3,6 +3,7 @@ import logo from './molorosh_sqr_200.png';
 import './App.css';
 import MouseEventSink from './MouseEventSink';
 import TheEyesHaveIt from './TheEyesHaveIt';
+import ThisIsNotAGame from './ThisIsNotAGame';
 
 class App extends Component {
   render() {
@@ -27,30 +28,47 @@ class App extends Component {
 
             <div className="welcome">          
               <h1>Welcome</h1>
-              <p>
-                This is the μ site for my tech, art, music 
-                <br/>and general creative stuff.  
-                <br/>At present my creative stuff is scattered across:
-              </p>
             </div>
 
-            <div className="creepyAvatar">
+            <div id="creepyAvatar01" className="creepyAvatar">
               <TheEyesHaveIt 
                 debug={false}
                 identifier="avatar01"
                 />
             </div>
+
+            <div className="welcome">          
+              <p>
+                This is the micro-site for my tech, art, music and general creative stuff.  
+                At present my creative stuff is scattered across:
+              </p>
+            </div>
             
-            <div className="codeRepositories"> 
-              <h2>Code Repositories:</h2>
-              <p><a target="_blank" href="https://github.com/ricketts30">github.com/ricketts30</a></p>
-              <p><a target="_blank" href="https://github.com/molorosh">github.com/molorosh</a></p>
+            <div className="flexiblePanel">
+              
+              <div className="codeRepositories flexCard"> 
+                <h2>Repos &amp; Apps</h2>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://github.com/ricketts30">github.com/ricketts30</a></p>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://github.com/molorosh">github.com/molorosh</a></p>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://molorosh.github.io/pharma/">Pharma</a></p>
+              </div>
+
+              <div className="microBlogs flexCard">
+                <h2>Micro-Blogs</h2>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://molorosh.tumblr.com">tumblr</a></p>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://www.instagram.com/molorosh/">instagram</a></p>
+              </div>
+
+              <div className="contactDetails flexCard">   
+                <h2>Contact Me</h2>       
+                <p>
+                  My contact details are cunningly 'hidden' in the source code of this page.
+                </p>
+              </div>
+
             </div>
 
-            <div className="microBlogs">
-              <h2>μ Blogs:</h2>
-              <p><a target="_blank" href="https://molorosh.tumblr.com">molorosh.tumblr.com</a></p>
-            </div>
+            <ThisIsNotAGame id="definatelyNoGamesHere" />
 
           </div>
         </article>

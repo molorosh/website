@@ -27,7 +27,7 @@ class TheEyesHaveIt extends Component {
                 retVal.y = bounds.top;
             }
         }
-        console.log(retVal);
+        //console.log(retVal);
         return retVal;
     }
 
@@ -118,7 +118,7 @@ class TheEyesHaveIt extends Component {
       return (
           <div className="tehiMain" id={div_id}>
             {debugLayout}
-            <p><AvatarSvg /></p>
+            <p className="tehiPara"><AvatarSvg /></p>
           </div>
       );
   }
