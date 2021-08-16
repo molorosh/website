@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import './ThisIsNotAGame.css';
 
 class ThisIsNotAGame extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     componentDidMount() {
         console.log("tinag.componentDidMount");    
