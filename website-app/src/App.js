@@ -60,10 +60,10 @@ class App extends Component {
               </div>
 
               <div className="contactDetails flexCard">   
-                <h2>Contact Me</h2>       
-                <p>
-                  My contact details are cunningly 'hidden' in the source code of this page.
-                </p>
+                <h2>Contact Me</h2>  
+                <p>my email is 'encrypted' with the ROT-13 cypher:</p>     
+                <p>zbybebfu@tznvy.pbz</p>
+                <p><a rel="noopener noreferrer" target="_blank" href="https://rot13.com/">https://rot13.com/</a></p>
               </div>
 
             </div>
