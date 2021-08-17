@@ -1,5 +1,6 @@
 .tinagMain {
-    border: 0px dashed silver;
+    border: 0px dashed transparent;
+    margin-bottom: 1rem;
 }
 
 .fancy{

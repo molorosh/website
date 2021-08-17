@@ -9,6 +9,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+        <div className="mainContent">
+
         <header className="App-header">
           <div className="App-header-logo-line">
             <div className="App-header-logo">
@@ -68,10 +71,27 @@ class App extends Component {
 
             </div>
 
-            <ThisIsNotAGame id="definatelyNoGamesHere" />
+            <div className="statement">
+              <p className="fancy">I have written websites; web services; mobile apps; progressive web apps; high-performance databases; windows services; XML and JSON APIs; desktop applications; card-readers; real-time embedded software; image processors; and even one art installation.  But I have never written a game ... yet</p>
+            </div>
+
+            <ThisIsNotAGame id="definatelyNoGamesHere" identifier="definatelyNoGamesHere" />
 
           </div>
         </article>
+
+        </div>
+
+        <div className="footerContent">
+          <p>Website powered by 
+          <a className="footer" rel="noopener noreferrer" target="_blank" href="https://reactjs.org/">React</a>
+          and 
+          <a className="footer" rel="noopener noreferrer" target="_blank" href="https://phaser.io/">Phaser</a>
+          . Source-code at 
+          <a className="footer" rel="noopener noreferrer" target="_blank" href="https://github.com/molorosh/website">GitHub</a>
+          .</p>
+        </div>
+
       </div>
     );
   }
